@@ -5,4 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
-      - run: echo "I've been triggered by ${{ github.event_name }} event"
+        run: echo "I've been triggered by ${{ github.event_name }} event"
