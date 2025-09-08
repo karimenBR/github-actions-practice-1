@@ -30,7 +30,7 @@ jobs:
             echo "Runner name: ${{ runner.name }}"
             echo "Tool cache directory: ${{ runner.tool_cache }}"
             echo "Temporary directory: ${{ runner.temp }}"
-        - name: step 4
+        - name: step 3
           run: |
             echo "=== Environment Variables ==="
             echo "Node version from env: ${{ env.NODE_VERSION }}"
