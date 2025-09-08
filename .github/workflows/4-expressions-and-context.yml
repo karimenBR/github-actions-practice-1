@@ -72,10 +72,10 @@ jobs:
         run: |
           echo "=== String Transformations ==="
           echo "Original ref: ${{ github.ref }}"
-          echo "Clean branch name: ${{ replace(github.ref, 'refs/heads/', '') }}"
+          echo "Clean branch name: ${{ github.ref_name }}"
           echo "Branch contains 'main': ${{ contains(github.ref_name, 'main') }}"
           echo "Branch starts with 'feature': ${{ startsWith(github.ref_name, 'feature/') }}"
-
+      
           echo "=== Conditional Logic ==="
           echo "Environment type: ${{ github.ref_name == 'main' && 'production' || 'development' }}"
           echo "Runner type: ${{ runner.os == 'Linux' && 'unix' || 'other' }}"
