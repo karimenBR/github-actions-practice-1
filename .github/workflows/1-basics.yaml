@@ -1,7 +1,6 @@
 name: GitHub Actions Basics
 
-on:
-  workflow_dispatch:
+on: [push , workflow_dispatch]
 
 jobs:
   hello-job:
