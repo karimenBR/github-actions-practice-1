@@ -11,15 +11,61 @@ jobs:
       BUILD_ENV: 'development'
       APP_NAME: 'TestApp'
     steps:
-    # Your Step 1: GitHub Context Information
-    # Your Step 2: Runner Environment Information
-    # Your Step 3: Environment Variables Test
-    # Your Step 4: Secrets Context Test
+        - name: step 1
+          env:
+            TEST_API_KEY: "key"
+            DATABASE_URL: "db url"
+          run: |
+            echo "=== Runner Environment ==="
+            echo "Operating System: ${{ runner.os }}"
+            echo "Architecture: ${{ runner.arch }}"
+            echo "Runner name: ${{ runner.name }}"
+            echo "Tool cache directory: ${{ runner.tool_cache }}"
+            echo "Temporary directory: ${{ runner.temp }}"
+        - name: step 2
+          run: |
+            echo "=== Runner Environment ==="
+            echo "Operating System: ${{ runner.os }}"
+            echo "Architecture: ${{ runner.arch }}"
+            echo "Runner name: ${{ runner.name }}"
+            echo "Tool cache directory: ${{ runner.tool_cache }}"
+            echo "Temporary directory: ${{ runner.temp }}"
+        - name: step 4
+          run: |
+            echo "=== Environment Variables ==="
+            echo "Node version from env: ${{ env.NODE_VERSION }}"
+            echo "Build environment: ${{ env.BUILD_ENV }}"
+            echo "Application name: ${{ env.APP_NAME }}"
+            echo "System PATH exists: ${{ env.PATH != '' }}"
+            echo "Home directory: ${{ env.HOME }}"
+        - name: step 4
+          run: |
+            echo "=== Secrets Availability Check ==="
+            echo "Has TEST_API_KEY secret: ${{ secrets.TEST_API_KEY != '' }}"
+            echo "Has DATABASE_URL secret: ${{ secrets.DATABASE_URL != '' }}"
+            echo "TEST_API_KEY env: ${{ env.TEST_API_KEY }}"
+            echo "DATABASE_URL env: ${{ env.DATABASE_URL }}"
+            echo "API key configured: ${{ secrets.TEST_API_KEY != '' && 'YES' || 'NO' }}"
+            echo "Database URL starts with 'postgresql': ${{ startsWith(secrets.DATABASE_URL, 'postgresql') }}"
+          
+      
+  
 
-  logic-operations:
-    needs: context-explorer
-    runs-on: ubuntu-latest
-    steps:
-    # Your Step 1: Branch-based Conditional Steps (3 separate conditional steps)
-    # Your Step 2: OS Conditional Steps (3 separate conditional steps)
-    # Your Step 3: String Manipulation Functions
+
+#  logic-operations:
+#    needs: context-explorer
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: linux-step
+#        run: |
+#          echo "🐧 Running on Linux - using apt package manager"
+#          echo "Linux runner detected: ${{ runner.os }}"
+#      - name: macOS-step
+#        run: |
+#          echo "🍎 Running on macOS - using homebrew package manager"
+#          echo "macOS runner detected: ${{ runner.os }}"
+#      - name: win-step
+#        run: |
+#          echo "🪟 Running on Windows - using chocolatey package manager"
+#          echo "Windows runner detected: ${{ runner.os }}"
+#      - name:
